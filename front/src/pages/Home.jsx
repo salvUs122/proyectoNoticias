@@ -41,33 +41,27 @@ const Home = () => {
 
     return (
         <div className="home-container">
-            {/* Header con diseño moderno */}
+            {/* Header minimalista */}
             <header className="home-header">
                 <div className="header-content">
                     <div className="logo">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                             <path d="M4 4h16v16H4z" />
                             <path d="M8 8h8v8H8z" />
                         </svg>
                         <h1>El Noticiero</h1>
                     </div>
-                  
-                </div>
-                <div className="header-decoration">
-                    <div className="decoration-circle"></div>
-                    <div className="decoration-circle"></div>
-                    <div className="decoration-circle"></div>
                 </div>
             </header>
 
             <main className="home-main">
                 {noticias.length > 0 ? (
                     <>
-                        {/* Noticia destacada (la más reciente) */}
+                        {/* Noticia destacada */}
                         {noticias[0] && (
                             <section className="noticia-destacada">
                                 <div className="destacada-content">
-                                    <span className="destacada-badge">📰 NOTICIA DESTACADA</span>
+                                    <span className="destacada-badge">Destacado</span>
                                     <h2>{noticias[0].titulo}</h2>
                                     <time>{formatFecha(noticias[0].fecha)}</time>
                                     <p>{noticias[0].contenido.substring(0, 200)}...</p>
@@ -75,31 +69,33 @@ const Home = () => {
                                         className="leer-mas-btn"
                                         onClick={() => setNoticiaSeleccionada(noticias[0])}
                                     >
-                                        Leer noticia completa
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        Leer más
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                                             <line x1="5" y1="12" x2="19" y2="12" />
                                             <polyline points="12 5 19 12 12 19" />
                                         </svg>
                                     </button>
                                 </div>
-                                {noticias[0].imagenUrl && (
+                                {noticias[0].imagenUrl ? (
                                     <div className="destacada-imagen">
                                         <img 
                                             src={`http://localhost:4000${noticias[0].imagenUrl}`} 
                                             alt={noticias[0].titulo}
                                         />
                                     </div>
+                                ) : (
+                                    <div className="destacada-imagen" />
                                 )}
                             </section>
                         )}
 
                         {/* Grid de noticias */}
                         <section className="noticias-grid">
-                            <h2 className="grid-title">Últimas Noticias</h2>
+                            <h2 className="grid-title">Últimas noticias</h2>
                             <div className="grid-container">
                                 {noticias.slice(1).map(noticia => (
                                     <article key={noticia._id} className="noticia-card">
-                                        {noticia.imagenUrl && (
+                                        {noticia.imagenUrl ? (
                                             <div className="card-imagen">
                                                 <img 
                                                     src={`http://localhost:4000${noticia.imagenUrl}`} 
@@ -107,16 +103,28 @@ const Home = () => {
                                                     loading="lazy"
                                                 />
                                             </div>
+                                        ) : (
+                                            <div className="card-imagen sin-imagen">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                                    <polyline points="21 15 16 10 5 21" />
+                                                </svg>
+                                            </div>
                                         )}
                                         <div className="card-contenido">
                                             <time>{formatFecha(noticia.fecha)}</time>
                                             <h3>{noticia.titulo}</h3>
-                                            <p>{noticia.contenido.substring(0, 120)}...</p>
+                                            <p>{noticia.contenido.substring(0, 100)}...</p>
                                             <button 
                                                 className="card-btn"
                                                 onClick={() => setNoticiaSeleccionada(noticia)}
                                             >
                                                 Leer más
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                                    <polyline points="12 5 19 12 12 19" />
+                                                </svg>
                                             </button>
                                         </div>
                                     </article>
@@ -132,13 +140,13 @@ const Home = () => {
                             <line x1="12" y1="18" x2="12" y2="12" />
                             <line x1="9" y1="15" x2="15" y2="15" />
                         </svg>
-                        <h3>No hay noticias disponibles</h3>
-                        <p>Pronto publicaremos nuevas noticias. ¡Vuelve a visitarnos!</p>
+                        <h3>No hay noticias</h3>
+                        <p>Pronto publicaremos nuevas noticias</p>
                     </div>
                 )}
             </main>
 
-            {/* Modal para ver noticia completa */}
+            {/* Modal */}
             {noticiaSeleccionada && (
                 <div className="modal-overlay" onClick={() => setNoticiaSeleccionada(null)}>
                     <div className="modal-contenido" onClick={e => e.stopPropagation()}>
