@@ -1,0 +1,569 @@
+/* Admin.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.admin-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Header Styles */
+.admin-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    color: #667eea;
+    stroke: currentColor;
+}
+
+.logo-section h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.logo-section h1 span {
+    color: #667eea;
+    font-weight: 300;
+}
+
+.logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.logout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(229, 62, 62, 0.4);
+}
+
+/* Main Content */
+.admin-main {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Form Styles */
+.noticia-form {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.form-header h2 {
+    font-size: 1.8rem;
+    color: #2d3748;
+    font-weight: 600;
+}
+
+.cancel-edit-btn {
+    padding: 0.5rem 1.5rem;
+    background: #e2e8f0;
+    color: #4a5568;
+    border: none;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-edit-btn:hover {
+    background: #cbd5e0;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #4a5568;
+    font-size: 0.95rem;
+}
+
+.input-group input[type="text"],
+.input-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.input-group input[type="text"]:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.input-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* Image Upload Area */
+.image-upload-area {
+    position: relative;
+    border: 2px dashed #e2e8f0;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.image-upload-area:hover {
+    border-color: #667eea;
+}
+
+.image-upload-area input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.upload-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    background: #f7fafc;
+}
+
+.upload-placeholder svg {
+    width: 48px;
+    height: 48px;
+    color: #a0aec0;
+    margin-bottom: 1rem;
+}
+
+.upload-placeholder p {
+    color: #4a5568;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.upload-placeholder span {
+    color: #a0aec0;
+    font-size: 0.85rem;
+}
+
+.image-preview {
+    position: relative;
+    width: 100%;
+    height: 250px;
+}
+
+.image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.remove-image {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+    background: rgba(229, 62, 62, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 20;
+}
+
+.remove-image:hover {
+    background: #e53e3e;
+    transform: scale(1.1);
+}
+
+.edit-hint {
+    margin-top: 0.5rem;
+    color: #718096;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+/* Form Actions */
+.form-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.submit-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn.editing {
+    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+}
+
+.submit-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(56, 161, 105, 0.4);
+}
+
+.submit-btn.editing:hover {
+    box-shadow: 0 5px 20px rgba(221, 107, 32, 0.4);
+}
+
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.loader {
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Noticias Section */
+.noticias-section {
+    margin-top: 3rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h3 {
+    font-size: 1.8rem;
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.noticias-count {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.noticias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Noticia Card */
+.noticia-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.noticia-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.noticia-card:hover .card-image img {
+    transform: scale(1.1);
+}
+
+.card-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content h4 {
+    font-size: 1.2rem;
+    color: #2d3748;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.card-content p {
+    color: #718096;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.card-footer time {
+    color: #a0aec0;
+    font-size: 0.85rem;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.edit-btn, .delete-btn {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-btn svg, .delete-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.edit-btn {
+    background: #ebf8ff;
+    color: #3182ce;
+}
+
+.edit-btn:hover {
+    background: #bee3f8;
+    transform: scale(1.1);
+}
+
+.delete-btn {
+    background: #fff5f5;
+    color: #e53e3e;
+}
+
+.delete-btn:hover {
+    background: #fed7d7;
+    transform: scale(1.1);
+}
+
+.delete-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+}
+
+.empty-state svg {
+    width: 80px;
+    height: 80px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1.5rem;
+}
+
+.empty-state h4 {
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content {
+        padding: 1rem;
+    }
+
+    .admin-main {
+        padding: 0 1rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .noticias-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .submit-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .logout-btn span {
+        display: none;
+    }
+
+    .logout-btn {
+        padding: 0.75rem;
+        border-radius: 50%;
+    }
+
+    .logout-btn svg {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-section h1 {
+        font-size: 1.2rem;
+    }
+
+    .form-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .noticia-card {
+        margin: 0;
+    }
+
+    .empty-state {
+        padding: 2rem 1rem;
+    }
+}
