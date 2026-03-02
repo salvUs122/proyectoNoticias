@@ -115,7 +115,7 @@ const Login = () => {
                 </form>
 
                 <div className="login-footer">
-                    <p>© 2024 El Noticiero - Panel Administrativo</p>
+                  
                 </div>
             </div>
         </div>
