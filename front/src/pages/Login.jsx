@@ -16,7 +16,7 @@ const Login = () => {
         setError('');
         
         try {
-            const res = await axios.post('http://localhost:4000/api/auth/login', { email, password });
+            const res = await axios.post('https://proyectonoticias.onrender.com/api/auth/login', { email, password });
             localStorage.setItem('token', res.data.token);
             navigate('/admin');
         } catch (err) {

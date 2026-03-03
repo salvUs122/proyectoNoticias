@@ -19,7 +19,7 @@ const Home = () => {
 
     const cargarNoticias = async () => {
         try {
-            const res = await axios.get('http://localhost:4000/api/noticias');
+            const res = await axios.get('https://proyectonoticias.onrender.com/api/noticias');
             setNoticias(res.data);
         } catch (error) {
             console.error("Error al cargar noticias", error);
@@ -80,7 +80,7 @@ const Home = () => {
                                 <div className="destacada-imagen-wrap">
                                     {noticias[0].imagenUrl ? (
                                         <img
-                                            src={`http://localhost:4000${noticias[0].imagenUrl}`}
+                                            src={`https://proyectonoticias.onrender.com${noticias[0].imagenUrl}`}
                                             alt={noticias[0].titulo}
                                         />
                                     ) : (
@@ -119,7 +119,7 @@ const Home = () => {
                                         <div className="item-imagen-wrap">
                                             {noticia.imagenUrl ? (
                                                 <img
-                                                    src={`http://localhost:4000${noticia.imagenUrl}`}
+                                                    src={`https://proyectonoticias.onrender.com${noticia.imagenUrl}`}
                                                     alt={noticia.titulo}
                                                     loading="lazy"
                                                 />
@@ -167,7 +167,7 @@ const Home = () => {
                         {noticiaSeleccionada.imagenUrl && (
                             <div className="modal-imagen">
                                 <img
-                                    src={`http://localhost:4000${noticiaSeleccionada.imagenUrl}`}
+                                    src={`https://proyectonoticias.onrender.com${noticiaSeleccionada.imagenUrl}`}
                                     alt={noticiaSeleccionada.titulo}
                                 />
                             </div>

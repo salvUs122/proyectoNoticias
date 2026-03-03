@@ -96,7 +96,7 @@ const Admin = () => {
 
     const cargarNoticias = async () => {
         try {
-            const res = await axios.get('http://localhost:4000/api/noticias');
+            const res = await axios.get('https://proyectonoticias.onrender.com/api/noticias');
             setNoticias(res.data);
         } catch (error) {
             console.error("Error al cargar noticias", error);
@@ -135,9 +135,9 @@ const Admin = () => {
 
         try {
             if (editando) {
-                await axios.put(`http://localhost:4000/api/noticias/${idEditar}`, formData, config);
+                await axios.put(`https://proyectonoticias.onrender.com/api/noticias/${idEditar}`, formData, config);
             } else {
-                await axios.post('http://localhost:4000/api/noticias', formData, config);
+                await axios.post('https://proyectonoticias.onrender.com/api/noticias', formData, config);
             }
             cancelarEdicion();
             cargarNoticias();
@@ -152,7 +152,7 @@ const Admin = () => {
     const eliminarNoticia = async (id) => {
         setEliminando(true);
         try {
-            await axios.delete(`http://localhost:4000/api/noticias/${id}`, config);
+            await axios.delete(`https://proyectonoticias.onrender.com/api/noticias/${id}`, config);
             cargarNoticias();
             mostrarToast('Noticia eliminada', 'success');
         } catch (error) {
@@ -166,7 +166,7 @@ const Admin = () => {
         setEditando(true);
         setIdEditar(noticia._id);
         setTitulo(noticia.titulo);
-        setPreviewImage(noticia.imagenUrl ? `http://localhost:4000${noticia.imagenUrl}` : null);
+        setPreviewImage(noticia.imagenUrl ? `https://proyectonoticias.onrender.com${noticia.imagenUrl}` : null);
         if (editorRef.current) {
             editorRef.current.innerHTML = noticia.contenido;
         }
@@ -331,7 +331,7 @@ const Admin = () => {
                                     {noticia.imagenUrl && (
                                         <div className="admin-row-img">
                                             <img
-                                                src={`http://localhost:4000${noticia.imagenUrl}`}
+                                                src={`https://proyectonoticias.onrender.com${noticia.imagenUrl}`}
                                                 alt={noticia.titulo}
                                                 loading="lazy"
                                             />
