@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Home.css';
 
+const stripHtml = (html) => {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || '';
+};
+
 const Home = () => {
     const [noticias, setNoticias] = useState([]);
     const [cargando, setCargando] = useState(true);
@@ -30,6 +36,11 @@ const Home = () => {
         });
     };
 
+    const getExcerpt = (contenido, max) => {
+        const text = stripHtml(contenido);
+        return text.length > max ? text.substring(0, max) + '...' : text;
+    };
+
     if (cargando) {
         return (
             <div className="loading-container">
@@ -41,16 +52,19 @@ const Home = () => {
 
     return (
         <div className="home-container">
-            {/* Header minimalista */}
+            {/* Header */}
             <header className="home-header">
-                <div className="header-content">
-                    <div className="logo">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                            <path d="M4 4h16v16H4z" />
-                            <path d="M8 8h8v8H8z" />
-                        </svg>
-                        <h1>El Noticiero</h1>
+                <div className="header-inner">
+                    <div className="header-top">
+                        <span className="header-date">{new Date().toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</span>
                     </div>
+                    <div className="header-brand">
+                        <h1 className="brand-name">El Noticiero</h1>
+                        <p className="brand-tagline">Información que importa</p>
+                    </div>
+                </div>
+                <div className="header-divider">
+                    <div className="divider-accent"></div>
                 </div>
             </header>
 
@@ -59,74 +73,73 @@ const Home = () => {
                     <>
                         {/* Noticia destacada */}
                         {noticias[0] && (
-                            <section className="noticia-destacada">
-                                <div className="destacada-content">
-                                    <span className="destacada-badge">Destacado</span>
-                                    <h2>{noticias[0].titulo}</h2>
-                                    <time>{formatFecha(noticias[0].fecha)}</time>
-                                    <p>{noticias[0].contenido.substring(0, 200)}...</p>
-                                    <button 
-                                        className="leer-mas-btn"
-                                        onClick={() => setNoticiaSeleccionada(noticias[0])}
-                                    >
-                                        Leer más
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                            <line x1="5" y1="12" x2="19" y2="12" />
-                                            <polyline points="12 5 19 12 12 19" />
-                                        </svg>
-                                    </button>
-                                </div>
-                                {noticias[0].imagenUrl ? (
-                                    <div className="destacada-imagen">
-                                        <img 
-                                            src={`http://localhost:4000${noticias[0].imagenUrl}`} 
+                            <section
+                                className="noticia-destacada"
+                                onClick={() => setNoticiaSeleccionada(noticias[0])}
+                            >
+                                <div className="destacada-imagen-wrap">
+                                    {noticias[0].imagenUrl ? (
+                                        <img
+                                            src={`http://localhost:4000${noticias[0].imagenUrl}`}
                                             alt={noticias[0].titulo}
                                         />
-                                    </div>
-                                ) : (
-                                    <div className="destacada-imagen" />
-                                )}
+                                    ) : (
+                                        <div className="destacada-imagen-placeholder">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                                                <rect x="3" y="3" width="18" height="18" rx="1" />
+                                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                                <polyline points="21 15 16 10 5 21" />
+                                            </svg>
+                                        </div>
+                                    )}
+                                    <span className="badge-destacada">Destacado</span>
+                                </div>
+                                <div className="destacada-content">
+                                    <time className="noticia-fecha">{formatFecha(noticias[0].fecha)}</time>
+                                    <h2 className="destacada-titulo">{noticias[0].titulo}</h2>
+                                    <p className="destacada-excerpt">{getExcerpt(noticias[0].contenido, 250)}</p>
+                                    <span className="leer-link">Leer artículo completo →</span>
+                                </div>
                             </section>
                         )}
 
-                        {/* Grid de noticias */}
-                        <section className="noticias-grid">
-                            <h2 className="grid-title">Últimas noticias</h2>
-                            <div className="grid-container">
-                                {noticias.slice(1).map(noticia => (
-                                    <article key={noticia._id} className="noticia-card">
-                                        {noticia.imagenUrl ? (
-                                            <div className="card-imagen">
-                                                <img 
-                                                    src={`http://localhost:4000${noticia.imagenUrl}`} 
+                        {/* Lista de noticias */}
+                        <section className="noticias-lista">
+                            <div className="lista-header">
+                                <h2 className="lista-titulo">Últimas noticias</h2>
+                                <div className="lista-linea"></div>
+                            </div>
+                            <div className="lista-items">
+                                {noticias.slice(1).map((noticia, idx) => (
+                                    <article
+                                        key={noticia._id}
+                                        className="noticia-item"
+                                        onClick={() => setNoticiaSeleccionada(noticia)}
+                                    >
+                                        <div className="item-imagen-wrap">
+                                            {noticia.imagenUrl ? (
+                                                <img
+                                                    src={`http://localhost:4000${noticia.imagenUrl}`}
                                                     alt={noticia.titulo}
                                                     loading="lazy"
                                                 />
-                                            </div>
-                                        ) : (
-                                            <div className="card-imagen sin-imagen">
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                                                    <circle cx="8.5" cy="8.5" r="1.5" />
-                                                    <polyline points="21 15 16 10 5 21" />
-                                                </svg>
-                                            </div>
-                                        )}
-                                        <div className="card-contenido">
-                                            <time>{formatFecha(noticia.fecha)}</time>
-                                            <h3>{noticia.titulo}</h3>
-                                            <p>{noticia.contenido.substring(0, 100)}...</p>
-                                            <button 
-                                                className="card-btn"
-                                                onClick={() => setNoticiaSeleccionada(noticia)}
-                                            >
-                                                Leer más
-                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                                    <line x1="5" y1="12" x2="19" y2="12" />
-                                                    <polyline points="12 5 19 12 12 19" />
-                                                </svg>
-                                            </button>
+                                            ) : (
+                                                <div className="item-imagen-placeholder">
+                                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                                                        <rect x="3" y="3" width="18" height="18" rx="1" />
+                                                        <circle cx="8.5" cy="8.5" r="1.5" />
+                                                        <polyline points="21 15 16 10 5 21" />
+                                                    </svg>
+                                                </div>
+                                            )}
                                         </div>
+                                        <div className="item-content">
+                                            <time className="noticia-fecha">{formatFecha(noticia.fecha)}</time>
+                                            <h3 className="item-titulo">{noticia.titulo}</h3>
+                                            <p className="item-excerpt">{getExcerpt(noticia.contenido, 130)}</p>
+                                            <span className="leer-link">Leer más →</span>
+                                        </div>
+                                        {idx < noticias.length - 2 && <div className="item-separador" />}
                                     </article>
                                 ))}
                             </div>
@@ -137,44 +150,46 @@ const Home = () => {
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                             <polyline points="14 2 14 8 20 8" />
-                            <line x1="12" y1="18" x2="12" y2="12" />
-                            <line x1="9" y1="15" x2="15" y2="15" />
                         </svg>
-                        <h3>No hay noticias</h3>
+                        <h3>No hay noticias aún</h3>
                         <p>Pronto publicaremos nuevas noticias</p>
                     </div>
                 )}
             </main>
 
-            {/* Modal */}
+            {/* Modal expandido */}
             {noticiaSeleccionada && (
                 <div className="modal-overlay" onClick={() => setNoticiaSeleccionada(null)}>
                     <div className="modal-contenido" onClick={e => e.stopPropagation()}>
-                        <button 
-                            className="modal-cerrar"
-                            onClick={() => setNoticiaSeleccionada(null)}
-                        >
+                        <button className="modal-cerrar" onClick={() => setNoticiaSeleccionada(null)}>
                             ×
                         </button>
                         {noticiaSeleccionada.imagenUrl && (
                             <div className="modal-imagen">
-                                <img 
-                                    src={`http://localhost:4000${noticiaSeleccionada.imagenUrl}`} 
+                                <img
+                                    src={`http://localhost:4000${noticiaSeleccionada.imagenUrl}`}
                                     alt={noticiaSeleccionada.titulo}
                                 />
                             </div>
                         )}
                         <div className="modal-texto">
-                            <time>{formatFecha(noticiaSeleccionada.fecha)}</time>
-                            <h2>{noticiaSeleccionada.titulo}</h2>
-                            <p>{noticiaSeleccionada.contenido}</p>
+                            <time className="noticia-fecha">{formatFecha(noticiaSeleccionada.fecha)}</time>
+                            <h2 className="modal-titulo">{noticiaSeleccionada.titulo}</h2>
+                            <div
+                                className="modal-cuerpo"
+                                dangerouslySetInnerHTML={{ __html: noticiaSeleccionada.contenido }}
+                            />
                         </div>
                     </div>
                 </div>
             )}
 
             <footer className="home-footer">
-                <p>salvador alanes</p>
+                <div className="footer-inner">
+                    <span className="footer-brand">El Noticiero</span>
+                    <span className="footer-sep">·</span>
+                    <span>Salvador Alanes</span>
+                </div>
             </footer>
         </div>
     );

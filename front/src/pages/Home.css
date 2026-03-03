@@ -1,5 +1,5 @@
-/* Home.css - Versión Minimalista */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+/* Home.css - Estilo Canal de Noticias */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap');
 
 * {
     margin: 0;
@@ -8,9 +8,9 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background: #fafafa;
-    color: #1a1a1a;
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f5f4ef;
+    color: #18181b;
 }
 
 .home-container {
@@ -19,24 +19,26 @@ body {
     flex-direction: column;
 }
 
-/* Loading State */
+/* ============================================ */
+/* LOADING */
+/* ============================================ */
 .loading-container {
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
+    background: #f5f4ef;
+    gap: 1rem;
 }
 
 .loading-container .loader {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #eaeaea;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #ddd;
     border-radius: 50%;
-    border-top-color: #888;
-    animation: spin 1s ease-in-out infinite;
-    margin-bottom: 1rem;
+    border-top-color: #c0392b;
+    animation: spin 0.8s linear infinite;
 }
 
 @keyframes spin {
@@ -44,504 +46,553 @@ body {
 }
 
 .loading-container p {
-    color: #666;
+    color: #888;
     font-size: 0.9rem;
-    font-weight: 400;
+    letter-spacing: 0.03em;
 }
 
-/* Header Styles - Minimalista */
+
+/* ============================================ */
+/* HEADER - CANAL DE NOTICIAS */
+/* ============================================ */
 .home-header {
-    background: #ffffff;
-    border-bottom: 1px solid #eaeaea;
-    padding: 2rem 1.5rem;
+    background: #fff;
+    border-bottom: 3px solid #c0392b;
 }
 
-.header-content {
-    max-width: 1200px;
+.header-inner {
+    max-width: 1100px;
     margin: 0 auto;
+    padding: 1.25rem 1.5rem 0.75rem;
 }
 
-.logo {
+.header-top {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
 }
 
-.logo svg {
-    width: 32px;
-    height: 32px;
-    stroke: #333;
+.header-date {
+    font-size: 0.75rem;
+    color: #888;
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+    font-family: 'Source Sans 3', sans-serif;
 }
 
-.logo h1 {
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: #1a1a1a;
+.header-brand {
+    text-align: center;
+    padding: 0.5rem 0 1rem;
+}
+
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    color: #18181b;
     letter-spacing: -0.02em;
+    line-height: 1;
 }
 
-/* Main Content */
+.brand-tagline {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.78rem;
+    color: #888;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+}
+
+.header-divider {
+    width: 100%;
+}
+
+.divider-accent {
+    height: 3px;
+    background: #c0392b;
+    width: 100%;
+}
+
+/* ============================================ */
+/* MAIN LAYOUT */
+/* ============================================ */
 .home-main {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem 3rem;
     flex: 1;
     width: 100%;
 }
 
+.noticia-fecha {
+    display: block;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #c0392b;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+}
+
+.leer-link {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #c0392b;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-top: auto;
+}
+
+.leer-link:hover { opacity: 0.7; }
+
 /* ============================================ */
-/* NOTICIA DESTACADA - MINIMALISTA */
+/* NOTICIA DESTACADA */
 /* ============================================ */
 .noticia-destacada {
     display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    background: #ffffff;
-    border: 1px solid #eaeaea;
-    margin-bottom: 3rem;
-    transition: all 0.2s ease;
-}
-
-.destacada-content {
-    padding: 2rem;
-}
-
-.destacada-badge {
-    display: inline-block;
-    background: #f5f5f5;
-    color: #666;
-    padding: 0.25rem 0.75rem;
-    font-size: 0.7rem;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-}
-
-.destacada-content h2 {
-    font-size: 1.8rem;
-    color: #1a1a1a;
-    margin-bottom: 0.75rem;
-    line-height: 1.3;
-    font-weight: 500;
-}
-
-.destacada-content time {
-    display: block;
-    color: #888;
-    margin-bottom: 1rem;
-    font-size: 0.8rem;
-    font-weight: 300;
-}
-
-.destacada-content p {
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    font-size: 0.9rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.leer-mas-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    background: #1a1a1a;
-    color: white;
-    border: none;
-    font-size: 0.85rem;
-    font-weight: 400;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 0;
+    background: #fff;
+    border: 1px solid #e4e1d6;
+    margin-bottom: 2.5rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: box-shadow 0.2s;
 }
 
-.leer-mas-btn svg {
-    width: 16px;
-    height: 16px;
-    stroke: white;
+.noticia-destacada:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 
-.leer-mas-btn:hover {
-    background: #333;
-}
-
-.destacada-imagen {
+.destacada-imagen-wrap {
     position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 300px;
-    background: #f5f5f5;
+    min-height: 340px;
+    background: #e8e5de;
     overflow: hidden;
 }
 
-.destacada-imagen img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-/* ============================================ */
-/* TARJETAS DE NOTICIAS - MINIMALISTA */
-/* ============================================ */
-.noticias-grid {
-    margin-top: 2rem;
-}
-
-.grid-title {
-    font-size: 1.5rem;
-    color: #1a1a1a;
-    margin-bottom: 1.5rem;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.noticia-card {
-    background: #ffffff;
-    border: 1px solid #eaeaea;
-    transition: all 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.noticia-card:hover {
-    border-color: #ccc;
-}
-
-/* IMAGEN - ESTILO CUADRADO MINIMALISTA */
-.card-imagen {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background: #f5f5f5;
-    overflow: hidden;
-    border-bottom: 1px solid #eaeaea;
-}
-
-.card-imagen img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: opacity 0.3s ease;
-}
-
-.noticia-card:hover .card-imagen img {
-    opacity: 0.9;
-}
-
-/* Placeholder minimalista */
-.card-imagen.sin-imagen {
-    background: #f5f5f5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.card-imagen.sin-imagen svg {
-    width: 40px;
-    height: 40px;
-    color: #aaa;
-}
-
-/* Contenido de la tarjeta - Minimalista */
-.card-contenido {
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.card-contenido time {
-    color: #888;
-    font-size: 0.7rem;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-}
-
-.card-contenido h3 {
-    color: #1a1a1a;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.4;
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.card-contenido p {
-    color: #666;
-    font-size: 0.8rem;
-    line-height: 1.5;
-    margin: 0.25rem 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.card-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: none;
-    border: none;
-    color: #666;
-    font-size: 0.8rem;
-    font-weight: 400;
-    cursor: pointer;
-    padding: 0.5rem 0 0;
-    margin-top: 0.25rem;
-    border-top: 1px solid #eaeaea;
-    width: 100%;
-    justify-content: flex-start;
-    transition: color 0.2s ease;
-}
-
-.card-btn svg {
-    width: 14px;
-    height: 14px;
-    stroke: #666;
-    transition: transform 0.2s ease;
-}
-
-.card-btn:hover {
-    color: #1a1a1a;
-}
-
-.card-btn:hover svg {
-    transform: translateX(3px);
-    stroke: #1a1a1a;
-}
-
-/* ============================================ */
-/* MODAL - MINIMALISTA */
-/* ============================================ */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    z-index: 1000;
-}
-
-.modal-contenido {
-    background: white;
-    max-width: 700px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    border: 1px solid #eaeaea;
-}
-
-.modal-cerrar {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 32px;
-    height: 32px;
-    background: white;
-    color: #666;
-    border: 1px solid #eaeaea;
-    font-size: 1.2rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    z-index: 10;
-}
-
-.modal-cerrar:hover {
-    background: #f5f5f5;
-}
-
-.modal-imagen {
-    width: 100%;
-    height: 300px;
-    background: #f5f5f5;
-    overflow: hidden;
-}
-
-.modal-imagen img {
+.destacada-imagen-wrap img {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    object-position: center;
-}
-
-.modal-texto {
-    padding: 2rem;
-}
-
-.modal-texto time {
-    color: #888;
-    font-size: 0.8rem;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 0.5rem;
     display: block;
+    transition: transform 0.4s ease;
 }
 
-.modal-texto h2 {
-    color: #1a1a1a;
-    font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    line-height: 1.3;
+.noticia-destacada:hover .destacada-imagen-wrap img {
+    transform: scale(1.03);
 }
 
-.modal-texto p {
-    color: #666;
-    line-height: 1.8;
+.destacada-imagen-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8e5de;
+}
+
+.destacada-imagen-placeholder svg {
+    width: 48px;
+    height: 48px;
+    color: #bbb;
+}
+
+.badge-destacada {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: #c0392b;
+    color: #fff;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+}
+
+.destacada-content {
+    padding: 2rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    border-left: 1px solid #e4e1d6;
+}
+
+.destacada-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 700;
+    color: #18181b;
+    line-height: 1.25;
+}
+
+.destacada-excerpt {
+    font-family: 'Source Sans 3', sans-serif;
     font-size: 0.95rem;
-    font-weight: 300;
+    color: #555;
+    line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 /* ============================================ */
-/* EMPTY STATE - MINIMALISTA */
+/* LISTA DE NOTICIAS - HORIZONTAL */
+/* ============================================ */
+.noticias-lista {
+    margin-top: 0;
+}
+
+.lista-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.lista-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #18181b;
+    white-space: nowrap;
+}
+
+.lista-linea {
+    flex: 1;
+    height: 1px;
+    background: #c0392b;
+    opacity: 0.3;
+}
+
+.lista-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: #fff;
+    border: 1px solid #e4e1d6;
+}
+
+.noticia-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.18s;
+}
+
+.noticia-item:hover {
+    background: #faf9f5;
+}
+
+.item-imagen-wrap {
+    width: 200px;
+    height: 148px;
+    background: #e8e5de;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-imagen-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.35s ease;
+}
+
+.noticia-item:hover .item-imagen-wrap img {
+    transform: scale(1.04);
+}
+
+.item-imagen-placeholder {
+    width: 100%;
+    height: 100%;
+    min-height: 148px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.item-imagen-placeholder svg {
+    width: 36px;
+    height: 36px;
+    color: #c5c0b5;
+}
+
+.item-content {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3rem;
+    border-left: 1px solid #e4e1d6;
+}
+
+.item-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #18181b;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.item-excerpt {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-top: 0.15rem;
+}
+
+.item-separador {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e4e1d6;
+}
+
+/* ============================================ */
+/* EMPTY STATE */
 /* ============================================ */
 .empty-state {
     text-align: center;
     padding: 4rem 2rem;
-    background: white;
-    border: 1px solid #eaeaea;
+    background: #fff;
+    border: 1px solid #e4e1d6;
 }
 
 .empty-state svg {
-    width: 60px;
-    height: 60px;
+    width: 52px;
+    height: 52px;
     color: #ccc;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
 }
 
 .empty-state h3 {
-    color: #1a1a1a;
-    font-size: 1.3rem;
-    font-weight: 500;
+    font-family: 'Playfair Display', serif;
+    color: #18181b;
+    font-size: 1.2rem;
+    font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
 .empty-state p {
     color: #888;
     font-size: 0.9rem;
-    font-weight: 300;
 }
 
 /* ============================================ */
-/* FOOTER - MINIMALISTA */
+/* MODAL */
+/* ============================================ */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+}
+
+.modal-contenido {
+    background: #fff;
+    max-width: 740px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border-top: 4px solid #c0392b;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+}
+
+.modal-cerrar {
+    position: absolute;
+    top: 0.85rem;
+    right: 1rem;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    color: #555;
+    border: 1px solid #ddd;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    z-index: 10;
+}
+
+.modal-cerrar:hover {
+    background: #f5f4ef;
+    color: #c0392b;
+    border-color: #c0392b;
+}
+
+.modal-imagen {
+    width: 100%;
+    height: 360px;
+    background: #e8e5de;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.modal-imagen img {
+    max-width: 100%;
+    max-height: 360px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.modal-texto {
+    padding: 2rem 2.25rem 2.5rem;
+}
+
+.modal-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 700;
+    color: #18181b;
+    line-height: 1.25;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid #e4e1d6;
+    padding-bottom: 1rem;
+}
+
+.modal-cuerpo {
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.85;
+}
+
+.modal-cuerpo p { margin-bottom: 0.85em; }
+.modal-cuerpo h1, .modal-cuerpo h2 {
+    font-family: 'Playfair Display', serif;
+    color: #18181b;
+    margin: 1.25em 0 0.5em;
+}
+.modal-cuerpo h1 { font-size: 1.5rem; }
+.modal-cuerpo h2 { font-size: 1.25rem; }
+.modal-cuerpo strong { color: #18181b; }
+.modal-cuerpo ul, .modal-cuerpo ol {
+    padding-left: 1.5rem;
+    margin-bottom: 0.85em;
+}
+
+/* ============================================ */
+/* FOOTER */
 /* ============================================ */
 .home-footer {
-    background: #ffffff;
-    border-top: 1px solid #eaeaea;
+    background: #18181b;
     color: #888;
-    text-align: center;
     padding: 1.5rem;
-    margin-top: 3rem;
+    margin-top: auto;
 }
 
-.home-footer p {
-    font-size: 0.8rem;
-    font-weight: 300;
+.footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.82rem;
 }
+
+.footer-brand {
+    font-family: 'Playfair Display', serif;
+    color: #c0392b;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.footer-sep { color: #444; }
 
 /* ============================================ */
-/* RESPONSIVE - MÓVILES */
+/* RESPONSIVE */
 /* ============================================ */
 @media (max-width: 768px) {
     .noticia-destacada {
         grid-template-columns: 1fr;
     }
 
-    .destacada-imagen {
-        min-height: 250px;
-        order: -1;
+    .destacada-imagen-wrap {
+        min-height: 220px;
     }
 
     .destacada-content {
+        border-left: none;
+        border-top: 1px solid #e4e1d6;
         padding: 1.5rem;
     }
 
-    .destacada-content h2 {
-        font-size: 1.5rem;
+    .noticia-item {
+        grid-template-columns: 140px 1fr;
     }
 
-    .grid-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+    .item-imagen-wrap {
+        width: 140px;
+        height: 120px;
     }
 
-    .modal-imagen {
-        height: 250px;
-    }
-
-    .modal-texto {
-        padding: 1.5rem;
-    }
-
-    .modal-texto h2 {
-        font-size: 1.5rem;
+    .item-imagen-placeholder {
+        min-height: 120px;
     }
 }
 
-@media (max-width: 480px) {
-    .home-header {
-        padding: 1.5rem 1rem;
+@media (max-width: 520px) {
+    .noticia-item {
+        grid-template-columns: 100px 1fr;
     }
 
-    .logo h1 {
-        font-size: 1.3rem;
+    .item-imagen-wrap {
+        width: 100px;
+        height: 110px;
     }
 
-    .destacada-content {
-        padding: 1.25rem;
+    .item-imagen-placeholder {
+        min-height: 110px;
     }
 
-    .destacada-content h2 {
-        font-size: 1.3rem;
+    .item-content {
+        padding: 0.9rem 1rem;
     }
 
-    .destacada-imagen {
-        min-height: 200px;
-    }
-
-    .card-contenido {
-        padding: 1rem;
-    }
-
-    .modal-imagen {
-        height: 200px;
+    .item-titulo {
+        font-size: 1rem;
     }
 
     .modal-texto {
-        padding: 1.25rem;
-    }
-
-    .modal-texto h2 {
-        font-size: 1.3rem;
+        padding: 1.5rem;
     }
 }
